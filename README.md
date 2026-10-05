@@ -4,14 +4,19 @@ Unimedia システム運用・保守サポートのランディングページ�
 
 ## 起動方法
 
-Node 不要です。プロジェクト直下の `index.html` をブラウザで開くか、簡易サーバーを使ってください。
+Node 不要です。日本語テキスト（`llms.txt` など）を正しく表示するため、次のサーバーを使ってください。
 
 ```bash
-# Python がある場合
-python3 -m http.server 5173
+cd /Users/ums/UM-SS
+python3 serve.py
 ```
 
-その後 http://localhost:5173 を開いてください。
+その後開くページ:
+
+- http://127.0.0.1:5173
+- http://127.0.0.1:5173/llms.txt
+
+> `python3 -m http.server` だと `charset=utf-8` が付かないことがあり、ブラウザで日本語が文字化けします。
 
 ## 構成
 
