@@ -222,7 +222,7 @@
 
         <div class="plan-grid">
           <article class="plan-card plan-card--light">
-            <div>
+            <div class="plan-top">
               <span class="plan-badge plan-badge--light">ライト</span>
               <h3>監視プラン - ライト -</h3>
               <p class="plan-desc">Webサイトや静的なLPの定期監視に最適です。</p>
@@ -246,14 +246,16 @@
                 監視対象は静的なWebサイトやLPのみ
               </div>
             </div>
-            <button class="btn btn-purple" type="button">3URLまで</button>
-            <p class="plan-note">
-              弊社監視システムからWebサイトやAPIのURLを定期的に監視し、異常時はご連絡します。
-            </p>
+            <div class="plan-footer">
+              <button class="btn btn-purple" type="button">3URLまで</button>
+              <p class="plan-note">
+                弊社監視システムからWebサイトやAPIのURLを定期的に監視し、異常時はご連絡します。
+              </p>
+            </div>
           </article>
 
           <article class="plan-card plan-card--basic">
-            <div>
+            <div class="plan-top">
               <span class="plan-badge plan-badge--basic">ベーシック</span>
               <h3>監視プラン - ベーシック -</h3>
               <p class="plan-desc">サーバー死活監視とログエラー監視を追加した、運用の基本形です。</p>
@@ -277,14 +279,16 @@
                 サービスの死活監視だけでなく、サーバーの性能やログも監視して問題を未然に防ぎたい
               </div>
             </div>
-            <button class="btn btn-purple" type="button">1サーバー</button>
-            <p class="plan-note">
-              外形監視以外に、サーバーの性能やログのエラーを監視し続け、サーバーの異常を顕在化させます。異常時には有人による問題の切り分けを実施し、ご連絡します。
-            </p>
+            <div class="plan-footer">
+              <button class="btn btn-purple" type="button">1サーバー</button>
+              <p class="plan-note">
+                外形監視以外に、サーバーの性能やログのエラーを監視し続け、サーバーの異常を顕在化させます。異常時には有人による問題の切り分けを実施し、ご連絡します。
+              </p>
+            </div>
           </article>
 
           <article class="plan-card plan-card--ops">
-            <div>
+            <div class="plan-top">
               <span class="plan-badge plan-badge--ops">監視＆運用</span>
               <h3>監視＆運用プラン</h3>
               <p class="plan-desc">障害対応と運用支援を含めた、安心のマネージド運用です。</p>
@@ -308,10 +312,12 @@
                 メンテナンスなどの計画作業や運用支援も頼みたい
               </div>
             </div>
-            <button class="btn btn-purple" type="button">1サーバー</button>
-            <p class="plan-note">
-              監視プランの内容に加えて障害発生時の一次対応も行います。また、サーバーメンテナンスなどの計画作業やバックアップ、運用支援、セキュリティアップデートなども行います。
-            </p>
+            <div class="plan-footer">
+              <button class="btn btn-purple" type="button">1サーバー</button>
+              <p class="plan-note">
+                監視プランの内容に加えて障害発生時の一次対応も行います。また、サーバーメンテナンスなどの計画作業やバックアップ、運用支援、セキュリティアップデートなども行います。
+              </p>
+            </div>
           </article>
         </div>
 
@@ -683,7 +689,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer__inner">
-                はい、可能です。夜間帯や休日のみなど、お客様の体制に合わせた時間帯指定の運用保守にも対応しています。まずはご希望の時間帯をお聞かせください。
+                ご希望の時間帯のみでの運用保守対応も可能でございます。 ヒアリングと合わせてお伺いいたしますので、詳細をお問い合わせフォームからご相談ください。
               </div>
             </div>
           </div>
@@ -696,7 +702,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer__inner">
-                はい。監視・通知のみのご依頼にも対応しています。異常検知後の一次対応はお客様側で実施いただくプランもご用意しています。
+                24時間365日弊社監視サーバーからの外形監視を実施し、ページの表示が遅い、ページが見えない場合に、お客様と取り決めた連絡網に連絡するサービスをご提供しておりますので、夜間や休日に拘束されることがなくなります。
               </div>
             </div>
           </div>
@@ -709,7 +715,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer__inner">
-                監視対象の台数・URL数、対応範囲（監視のみ / 障害対応 / 運用支援）などに応じてお見積りします。ライトプランは月額10,000円〜からご利用いただけます。
+                料金はお客様のニーズや要件に基づいてカスタマイズされます。外形監視のみの場合は3URLまで10,000円からご対応いたします。フルサポートをご希望の場合はサーバー1台あたり50,000円からのご提供となります。ボリュームに合わせてディスカウント対応をおこなっておりますので、お問い合わせフォームからご相談ください。
               </div>
             </div>
           </div>
@@ -722,7 +728,8 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer__inner">
-                ヒアリング → ご提案 → 設計 → テスト → 運用開始の流れです。詳細は「ご利用の流れ」セクションをご覧ください。
+                はじめに、お客様の要件をヒアリングし、提案書や契約内容を共有いたします。ご契約を経て、監視設定や導入テストを実施し、お客様との認識を合わせた上で運用保守サービスの提供を開始いたします。
+
               </div>
             </div>
           </div>
@@ -735,7 +742,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer__inner">
-                監視で異常を検知後、取り決めた連絡手段でエスカレーションします。プランによっては切り分け・一次対応まで実施し、復旧作業を行います。
+                24時間365日有人のサポート体制を確立しており、緊急時にはあらかじめ取り決めた一次対応を迅速に実施し、トラブルの回復を図ります。発生した問題には改善策を模索し、対応手順の整理や連絡先の変更など、お客様に安心してご利用いただけるように努めております。
               </div>
             </div>
           </div>
@@ -748,7 +755,7 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer__inner">
-                はい、AWSなどのクラウドに加え、VMware・オンプレミス環境にも対応可能です。環境構築や移行のご相談も承ります。
+                オンサイト対応はサービス提供外とさせていただいておりますが、リモートで対応可能な範囲でしたら承ります。ヒアリング後、ご提案をさせていただきますので、詳細をお問い合わせフォームからご相談ください。
               </div>
             </div>
           </div>

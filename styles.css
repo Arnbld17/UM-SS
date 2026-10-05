@@ -525,14 +525,17 @@ textarea {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
 }
 
 .plan-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 176px 1fr 44px 96px;
   gap: 16px;
   padding: 20px;
+  height: 100%;
   min-height: 552px;
+  box-sizing: border-box;
 }
 
 .plan-card--light {
@@ -545,6 +548,13 @@ textarea {
 
 .plan-card--ops {
   border-color: var(--purple);
+}
+
+.plan-top {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
 }
 
 .plan-badge {
@@ -583,13 +593,15 @@ textarea {
   color: var(--text-gray);
   font-size: 14px;
   line-height: 22px;
+  min-height: 44px;
 }
 
 .plan-price {
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: auto;
+  padding-top: 12px;
   white-space: nowrap;
 }
 
@@ -610,7 +622,16 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  flex: 1;
+  min-height: 0;
+}
+
+.plan-footer {
+  display: contents;
+}
+
+.plan-footer .btn-purple {
+  align-self: stretch;
+  height: 44px;
 }
 
 .plan-feature {
@@ -654,6 +675,8 @@ textarea {
   font-size: 14px;
   line-height: 22px;
   color: #1f2937;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* Comparison table */
