@@ -1265,9 +1265,11 @@ textarea {
 
 .step-card img {
   width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+  aspect-ratio: 1536 / 1024;
+  object-fit: contain;
+  object-position: center;
   border-radius: 8px;
+  background: #f7fbfb;
 }
 
 .step-card p {
