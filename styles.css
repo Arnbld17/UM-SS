@@ -1269,7 +1269,7 @@ textarea {
   object-fit: contain;
   object-position: center;
   border-radius: 8px;
-  background: #f7fbfb;
+  background: transparent;
 }
 
 .step-card p {
