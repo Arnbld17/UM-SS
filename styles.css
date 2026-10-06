@@ -187,6 +187,10 @@ textarea {
   min-height: 611px;
   color: var(--white);
   overflow: visible;
+  background: #0b1f35;
+  /* Keep console shadow inside the hero (avoids white gap on mobile). */
+  padding-bottom: 56px;
+  display: flow-root;
 }
 
 .hero__bg {
@@ -195,6 +199,7 @@ textarea {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  background: #0b1f35;
 }
 
 .hero__bg img {
@@ -346,7 +351,7 @@ textarea {
   gap: 40px;
   align-items: start;
   width: min(100% - 40px, var(--container));
-  margin: 24px auto 72px;
+  margin: 24px auto 24px;
 }
 
 .hero__copy h1 {
@@ -376,7 +381,7 @@ textarea {
   backdrop-filter: blur(8px);
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 17px 23px 47.8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
 }
 
 .hero-console__label {
@@ -1682,6 +1687,7 @@ textarea {
 
   .hero {
     min-height: 0;
+    padding-bottom: 40px;
   }
 
   .hero__overlay {
@@ -1693,8 +1699,14 @@ textarea {
     );
   }
 
+  .hero__bg {
+    /* Extra bleed so image/overlay never stop short of the padded edge. */
+    bottom: 0;
+  }
+
   .hero__bg img {
-    object-position: center;
+    object-position: center bottom;
+    min-height: 100%;
   }
 
   .site-header {
@@ -1724,7 +1736,7 @@ textarea {
     align-items: stretch;
     gap: 24px;
     width: min(100% - 32px, var(--container));
-    margin: 8px auto 40px;
+    margin: 8px auto 0;
   }
 
   .hero__copy,
@@ -1744,6 +1756,7 @@ textarea {
 
   .hero-console {
     padding: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
   }
 
   .flow-row {
