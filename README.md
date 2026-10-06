@@ -24,3 +24,20 @@ python3 serve.py
 - `styles.css` — デザイントークンとレイアウト
 - `main.js` — FAQ アコーディオン / フォーム補助
 - `assets/` — Figma から書き出した画像・SVG
+- `middleware.js` — Vercel Basic Auth（無料の username/password 保護）
+- `vercel.json` — Vercel 設定
+
+## Vercel で username / password 保護（無料）
+
+Vercel の公式 Password Protection は Pro 課金が必要です。  
+このリポジトリは **Basic Auth middleware** で Hobby でも保護できます。
+
+1. [vercel.com](https://vercel.com) で `Arnbld17/UM-SS` を Deploy
+2. Project → **Settings → Environment Variables** に追加:
+   - `BASIC_AUTH_USER` = 共有用ユーザー名（例: `viewer`）
+   - `BASIC_AUTH_PASS` = 共有用パスワード
+3. **Production / Preview / Development** すべてに付けて Save
+4. **Redeploy**（Deployments → 最新 → Redeploy）
+5. URL を開くとブラウザのログインダイアログが出ます
+
+ローカルの `python3 serve.py` には Basic Auth はかかりません（環境変数未設定のため）。
