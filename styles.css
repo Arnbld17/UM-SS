@@ -1438,6 +1438,45 @@ textarea {
     display: none;
   }
 
+  .hero {
+    min-height: 0;
+  }
+
+  .hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 31, 53, 0.82) 0%,
+      rgba(11, 31, 53, 0.88) 45%,
+      rgba(11, 31, 53, 0.94) 100%
+    );
+  }
+
+  .hero__bg img {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .site-header {
+    width: min(100% - 32px, var(--container));
+    height: 72px;
+    gap: 12px;
+  }
+
+  .logo {
+    height: 36px;
+  }
+
+  .btn-header {
+    height: 40px;
+    padding: 0 14px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
   .hero__content,
   .challenge-grid,
   .card-grid-3,
@@ -1451,6 +1490,29 @@ textarea {
   .hero__content {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    width: min(100% - 32px, var(--container));
+    margin: 8px auto 40px;
+  }
+
+  .hero__copy,
+  .hero-console {
+    width: 100%;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .hero-console {
+    padding: 20px;
   }
 
   .flow-row {
@@ -1484,8 +1546,31 @@ textarea {
     border-radius: 20px;
   }
 
+  .hero__copy h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .hero__copy p {
+    margin-top: 16px;
+    font-size: 15px;
+  }
+
+  .proof-row {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .proof-row__copy strong {
+    font-size: 14px;
+  }
+
+  .proof-row__stat {
+    min-width: 96px;
+  }
+
   .proof-row__stat strong {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .case-meta__row {
