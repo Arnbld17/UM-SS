@@ -49,10 +49,21 @@ function getCookie(request, name) {
 }
 
 function isPublicPath(pathname) {
-  return (
+  if (
     pathname === "/login.html" ||
     pathname === "/api/login" ||
-    pathname === "/favicon.ico"
+    pathname === "/favicon.ico" ||
+    pathname === "/llms.txt" ||
+    pathname === "/styles.css" ||
+    pathname === "/main.js"
+  ) {
+    return true;
+  }
+
+  // Images/icons must load even before the login cookie is available.
+  return (
+    pathname.startsWith("/assets/") ||
+    /\.(?:css|js|png|jpe?g|gif|svg|webp|ico|woff2?|ttf|txt)$/i.test(pathname)
   );
 }
 
