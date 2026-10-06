@@ -22,15 +22,30 @@
         <a href="#top" aria-label="トップへ">
           <img class="logo" src="./assets/logo.png" alt="システム運用・保守サポート" />
         </a>
-        <nav class="nav" aria-label="メインナビゲーション">
+        <nav class="nav" id="site-nav" aria-label="メインナビゲーション">
           <a href="#features">特徴</a>
           <a href="#services">サービス</a>
           <a href="#plans">メニュー</a>
           <a href="#cases">事例</a>
           <a href="#flow">ご利用の流れ</a>
           <a href="#faq">よくある質問</a>
+          <a class="nav__contact-mobile" href="#contact">お問い合わせ</a>
         </nav>
-        <a class="btn btn-header" href="#contact">お問い合わせ</a>
+        <div class="header-actions">
+          <a class="btn btn-header" href="#contact">お問い合わせ</a>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="メニューを開く"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            data-menu-toggle
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </header>
 
       <div class="hero__content">
@@ -841,6 +856,10 @@
         </div>
       </div>
     </footer>
+
+    <button class="to-top" type="button" aria-label="ページ上部へ戻る" data-to-top hidden>
+      ↑
+    </button>
 
     <script src="./main.js"></script>
   </body>

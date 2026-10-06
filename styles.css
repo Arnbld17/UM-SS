@@ -217,7 +217,7 @@ textarea {
 
 .site-header {
   position: relative;
-  z-index: 2;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -233,6 +233,13 @@ textarea {
   width: auto;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
 .nav {
   display: flex;
   gap: 28px;
@@ -243,6 +250,73 @@ textarea {
 
 .nav a:hover {
   color: var(--white);
+}
+
+.nav__contact-mobile {
+  display: none;
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(2, 168, 180, 0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.to-top:hover {
+  transform: translateY(-2px);
+}
+
+.to-top[hidden] {
+  display: none;
 }
 
 .hero__content {
@@ -1434,8 +1508,54 @@ textarea {
 }
 
 @media (max-width: 1100px) {
-  .nav {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .btn-header {
     display: none;
+  }
+
+  .nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: rgba(11, 31, 53, 0.96);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav a {
+    display: block;
+    padding: 14px 16px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .nav a:hover,
+  .nav a:focus-visible {
+    background: rgba(2, 168, 180, 0.18);
+    color: #fff;
+  }
+
+  .nav__contact-mobile {
+    display: block;
+    margin-top: 4px;
+    background: var(--teal);
+    text-align: center;
+    font-weight: 700;
   }
 
   .hero {
