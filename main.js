@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const siteNav = document.querySelector("#site-nav");
+  let scrollAnimId = 0;
+
   const closeMenu = () => {
     if (!menuToggle || !siteNav) return;
     siteNav.classList.remove("is-open");
@@ -55,22 +57,64 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.setAttribute("aria-label", "メニューを開く");
   };
 
-  const getScrollOffset = () => {
-    // Small breathing room under the viewport top after jump.
-    return window.matchMedia("(max-width: 1200px)").matches ? 12 : 16;
+  const stopScrollAnim = () => {
+    if (scrollAnimId) {
+      cancelAnimationFrame(scrollAnimId);
+      scrollAnimId = 0;
+    }
   };
+
+  const scrollToY = (targetY) => {
+    stopScrollAnim();
+
+    const endY = Math.max(0, targetY);
+    const startY = window.scrollY || window.pageYOffset;
+    const delta = endY - startY;
+
+    if (Math.abs(delta) < 2) {
+      window.scrollTo(0, endY);
+      return;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      window.scrollTo(0, endY);
+      return;
+    }
+
+    // Calm ease — cancel previous jump so clicks never fight up/down.
+    const duration = Math.min(750, Math.max(450, Math.abs(delta) * 0.45));
+    const started = performance.now();
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const tick = (now) => {
+      const progress = Math.min(1, (now - started) / duration);
+      window.scrollTo(0, startY + delta * easeInOutCubic(progress));
+      if (progress < 1) {
+        scrollAnimId = requestAnimationFrame(tick);
+      } else {
+        scrollAnimId = 0;
+        window.scrollTo(0, endY);
+      }
+    };
+
+    scrollAnimId = requestAnimationFrame(tick);
+  };
+
+  const getScrollOffset = () =>
+    window.matchMedia("(max-width: 1200px)").matches ? 8 : 16;
 
   const scrollToId = (id) => {
     const target = document.getElementById(id);
     if (!target) return false;
 
     const top =
-      target.getBoundingClientRect().top + window.scrollY - getScrollOffset();
+      target.getBoundingClientRect().top +
+      (window.scrollY || window.pageYOffset) -
+      getScrollOffset();
 
-    window.scrollTo({
-      top: Math.max(0, top),
-      behavior: "smooth",
-    });
+    scrollToY(top);
     return true;
   };
 
@@ -83,25 +127,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.getElementById(id)) return;
 
     event.preventDefault();
+    event.stopPropagation();
 
-    const menuWasOpen = siteNav && siteNav.classList.contains("is-open");
     closeMenu();
+    stopScrollAnim();
 
-    const go = () => {
+    // Let the mobile menu finish closing, then measure and jump once.
+    window.setTimeout(() => {
       scrollToId(id);
       if (history.pushState) {
         history.pushState(null, "", href);
-      } else {
-        window.location.hash = href;
       }
-    };
-
-    // Closing the mobile menu changes layout; wait so the target Y is correct.
-    if (menuWasOpen) {
-      window.setTimeout(go, 80);
-    } else {
-      requestAnimationFrame(go);
-    }
+    }, 100);
   };
 
   if (menuToggle && siteNav) {
@@ -124,15 +161,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const toTop = document.querySelector("[data-to-top]");
   if (toTop) {
     const toggleToTop = () => {
-      const show = window.scrollY > 420;
-      toTop.hidden = !show;
+      toTop.hidden = window.scrollY <= 420;
     };
 
     window.addEventListener("scroll", toggleToTop, { passive: true });
     toggleToTop();
 
     toTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      closeMenu();
+      scrollToY(0);
     });
   }
 });
