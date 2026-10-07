@@ -30,7 +30,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Smooth scrolling is handled in main.js so menu close + jump stay in sync. */
+  scroll-behavior: auto;
+}
+
+.section[id],
+.hero[id] {
+  scroll-margin-top: 16px;
 }
 
 body {

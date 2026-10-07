@@ -55,6 +55,55 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.setAttribute("aria-label", "メニューを開く");
   };
 
+  const getScrollOffset = () => {
+    // Small breathing room under the viewport top after jump.
+    return window.matchMedia("(max-width: 1200px)").matches ? 12 : 16;
+  };
+
+  const scrollToId = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return false;
+
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - getScrollOffset();
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: "smooth",
+    });
+    return true;
+  };
+
+  const handleAnchorClick = (event) => {
+    const link = event.currentTarget;
+    const href = link.getAttribute("href");
+    if (!href || href.charAt(0) !== "#" || href.length < 2) return;
+
+    const id = decodeURIComponent(href.slice(1));
+    if (!document.getElementById(id)) return;
+
+    event.preventDefault();
+
+    const menuWasOpen = siteNav && siteNav.classList.contains("is-open");
+    closeMenu();
+
+    const go = () => {
+      scrollToId(id);
+      if (history.pushState) {
+        history.pushState(null, "", href);
+      } else {
+        window.location.hash = href;
+      }
+    };
+
+    // Closing the mobile menu changes layout; wait so the target Y is correct.
+    if (menuWasOpen) {
+      window.setTimeout(go, 80);
+    } else {
+      requestAnimationFrame(go);
+    }
+  };
+
   if (menuToggle && siteNav) {
     menuToggle.addEventListener("click", () => {
       const willOpen = !siteNav.classList.contains("is-open");
@@ -63,14 +112,14 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.setAttribute("aria-label", willOpen ? "メニューを閉じる" : "メニューを開く");
     });
 
-    siteNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMenu();
     });
   }
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", handleAnchorClick);
+  });
 
   const toTop = document.querySelector("[data-to-top]");
   if (toTop) {
